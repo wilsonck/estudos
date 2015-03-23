@@ -3,8 +3,10 @@ var App = App  || {};
 App.objSearch = (function($) { 
     "use strict";
 
+    //Inicia o obj application 
     function objSearch(){
-
+        //Get input button
+        this._inputSearch = $('#bt-pesquisar');
     }
 
     objSearch.create = function() {
@@ -13,8 +15,29 @@ App.objSearch = (function($) {
 
     objSearch.fn = objSearch.prototype;
 
+    //Init object
     objSearch.fn.init = function(){
+        //Init event Click button serach
+        this._inputSearch.on('click', $.proxy(this, 'searchVideo'));
+    }
+
+    //Search video in to API Youtube
+    objSearch.fn.searchVideo = function(event){
+        event.preventDefault();
         
+        var strQuery = $('#inputSearch').val();
+        if (strQuery === '') { return };
+
+        var request = gapi.client.youtube.search.list({
+            q: strQuery,
+            part: 'snippet'
+        });
+
+        request.execute(function(response) {
+            var str = JSON.stringify(response.result);
+            console.log(str);
+        });
+
     }
 
     return objSearch;
@@ -23,33 +46,9 @@ App.objSearch = (function($) {
 
          
 $(function() {
+
+
+
     var app = App.objSearch.create();
     app.init();
 });
-
-
-
-$(function() {
-
-    // After the API loads, call a function to enable the search box.
-    function handleAPILoaded() {
-      $('#search-button').attr('disabled', false);
-    }
-
-    // Search for a specified string.
-    function search() {
-      var q = $('#query').val();
-      var request = gapi.client.youtube.search.list({
-        q: q,
-        part: 'snippet'
-      });
-
-      request.execute(function(response) {
-        var str = JSON.stringify(response.result);
-        $('#search-container').html('<pre>' + str + '</pre>');
-      });
-    }
-
-
-
-  });
