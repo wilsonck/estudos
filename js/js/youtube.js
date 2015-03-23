@@ -30,12 +30,12 @@ App.objSearch = (function($) {
 
         var request = gapi.client.youtube.search.list({
             q: strQuery,
-            part: 'snippet'
+            part: 'snippet',
+            maxResults : 50
         });
 
         request.execute(function(response) {
-            var str = JSON.stringify(response.result);
-            console.log(str);
+            console.log(response.items.length);
         });
 
     }
@@ -46,9 +46,7 @@ App.objSearch = (function($) {
 
          
 $(function() {
-
-
-
+    //Create Objetct and Init application
     var app = App.objSearch.create();
     app.init();
 });
