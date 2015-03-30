@@ -1,0 +1,14 @@
+body {
+  background: #fff;
+  margin:0;
+  padding: 0;
+}
+
+.square{
+  display: block;
+  width: 10%;
+  height: 10vh;
+  float: left;
+  background: #ccc;
+  float: left;
+}
