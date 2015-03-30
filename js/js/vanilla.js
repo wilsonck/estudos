@@ -11,14 +11,20 @@
 
     }
 
+    //Cria o Objeto da aplicação que vaos fazer tudo
     objManipulavel.create = function(){
         return new objManipulavel();
     }
 
+    //Inicializa a brincadeira
     objManipulavel.prototype.init = function(){
-        var elemButton = document.getElementById
-        console.log('sdfds');
+        var elemButton = document.getElementById('bt-pesquisar');
+        elemButton.addEventListener('click', this.createElement);
+    }
+
+    objManipulavel.prototype.createElement = function(){
+        var divCriada = document.createElement('div');
+        divCriada.setAttribute('id', 'objSquare');
     }
   
-
 })();
