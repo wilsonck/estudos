@@ -19,16 +19,17 @@
 
     //Inicializa a brincadeira
     objManipulavel.prototype.init = function(){
-        var elemButton = document.getElementById('bt-pesquisar');
-        elemButton.addEventListener('click', this.createElement);
 
-        //teste de chamada ajax sem jQuery
-        this.loadJson();
+        //Eventos dos botões
+        document.getElementById('bt-criadiv').addEventListener('click', this.createElement.bind(this));
+        document.getElementById('bt-load-json').addEventListener('click', this.loadJson.bind(this));
+        
     }
 
     objManipulavel.prototype.createElement = function(){
         var divCriada = document.createElement('div');
         divCriada.setAttribute('id', 'objSquare');
+        console.log('teste');
     }
 
     //Cria o objecto HttpRwequest
@@ -41,9 +42,9 @@
         } catch (e) {
             // Internet Explorer
             try {
-            xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+                xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
             } catch (e) {
-            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
             }
         }
         return xmlHttp;
@@ -52,6 +53,7 @@
     //Abre o Endereço do JSONs
     objManipulavel.prototype.loadJson = function(){
 
+        console.log(this);
         var xmlhttp = this.createObjectXML();
 
         xmlhttp.onreadystatechange = function() {
@@ -70,12 +72,17 @@
 
     }
 
-    objManipulavel.prototype.workJson = function(){
-        var objData = (arguments[0]);
-        console.log(JSON.parse(objData));
+    //Monta a página com o retorno do Json
+    //@dataJson = Objeto Json
+    objManipulavel.prototype.workJson = function(dataJson){
+        var objData = (dataJson);
+        console.log(dataJson);
+        console.log(JSON.parse(dataJson));
     }
 
 
+    //--> http://www.cin.ufpe.br/~ejgcs/ajax/2.6.htm
+    //--> Referência de javascript clasname http://www.tutsup.com/2014/05/02/dom-e-javascript/ 
     //--> Referencia boa https://developer.mozilla.org/pt-BR/docs/AJAX/Getting_Started
   
 })();
