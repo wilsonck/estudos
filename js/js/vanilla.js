@@ -16,6 +16,7 @@
         return new objManipulavel();
     }
     
+
     //Inicializa a brincadeira
     objManipulavel.prototype.init = function(){
         var elemButton = document.getElementById('bt-pesquisar');
@@ -30,22 +31,51 @@
         divCriada.setAttribute('id', 'objSquare');
     }
 
+    //Cria o objecto HttpRwequest
+    objManipulavel.prototype.createObjectXML = function(){
+        
+        var xmlHttp = null;
+        try {
+            // Firefox, Opera 8.0+, Safari
+            xmlHttp = new XMLHttpRequest();
+        } catch (e) {
+            // Internet Explorer
+            try {
+            xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+        }
+        return xmlHttp;
+    }
+
+    //Abre o Endereço do JSONs
     objManipulavel.prototype.loadJson = function(){
 
-        var xmlhttp;
-        if (window.XMLHttpRequest) xmlhttp = new XMLHttpRequest();
-        else if(window.ActiveXObject) xmlhttp = new ActiveXObject("MSXML2.XMLHTTP.3.0");
-        else throw "AJAX não suportado!";
+        var xmlhttp = this.createObjectXML();
 
         xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) { // Download concluído e a resposta não contém erros
-                console.log(this.responseText); // this dentro dessa function é seu XMLHttpRequest
+            if (this.readyState === 4) { // Download concluído e a resposta não contém erros
+                if (this.status === 200) {
+                    objManipulavel.prototype.workJson(this.responseText); // this dentro dessa function é seu XMLHttpRequest
+                }else{
+                    console.log('Houston we have a problem! FUCK');
+                };  
+                
             }
         }
 
-        xmlhttp.open('GET', 'http://headers.jsontest.com/', true);
+        xmlhttp.open('GET', 'http://api.mtgapi.com/v2/sets?code=JOU', true);
         xmlhttp.send(null);
 
     }
+
+    objManipulavel.prototype.workJson = function(){
+        var objData = (arguments[0]);
+        console.log(JSON.parse(objData));
+    }
+
+
+    //--> Referencia boa https://developer.mozilla.org/pt-BR/docs/AJAX/Getting_Started
   
 })();
