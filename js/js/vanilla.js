@@ -7,16 +7,13 @@
     });
 
     //Função construtora do elemento que vamos usar para alterar
-    function objManipulavel(){
-
-    }
+    function objManipulavel(){}
 
     //Cria o Objeto da aplicação que vaos fazer tudo
     objManipulavel.create = function(){
         return new objManipulavel();
     }
     
-
     //Inicializa a brincadeira
     objManipulavel.prototype.init = function(){
 
@@ -78,7 +75,6 @@
     objManipulavel.prototype.workJson = function(dataJson){
         console.log(JSON.parse(dataJson));
     }
-
 
     //--> http://www.cin.ufpe.br/~ejgcs/ajax/2.6.htm
     //--> Referência de javascript clasname http://www.tutsup.com/2014/05/02/dom-e-javascript/ 
