@@ -29,13 +29,15 @@
     objManipulavel.prototype.createElement = function(){
         var divCriada = document.createElement('div');
         divCriada.setAttribute('id', 'objSquare');
-        console.log('teste');
+        divCriada.setAttribute('class', 'objSquare');
+        document.getElementById('principal').appendChild(divCriada)
     }
 
     //Cria o objecto HttpRwequest
     objManipulavel.prototype.createObjectXML = function(){
         
         var xmlHttp = null;
+
         try {
             // Firefox, Opera 8.0+, Safari
             xmlHttp = new XMLHttpRequest();
@@ -53,7 +55,6 @@
     //Abre o Endereço do JSONs
     objManipulavel.prototype.loadJson = function(){
 
-        console.log(this);
         var xmlhttp = this.createObjectXML();
 
         xmlhttp.onreadystatechange = function() {
@@ -75,8 +76,6 @@
     //Monta a página com o retorno do Json
     //@dataJson = Objeto Json
     objManipulavel.prototype.workJson = function(dataJson){
-        var objData = (dataJson);
-        console.log(dataJson);
         console.log(JSON.parse(dataJson));
     }
 

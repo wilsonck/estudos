@@ -1,4 +1,5 @@
-@fundobotao: #000;
+@backgroundbutton: #000;
+@backgroundsquare: #05fe87;
 
 body{
 	text-align: center;
@@ -8,10 +9,21 @@ body{
 	width:100%;
 	height: auto;
 	float: left;
-	.bt-pesquisar{
-		background: @fundobotao;
-		color: #fff;
-		border:none;
-		padding:10px 45px;
+	.objSquare{
+		width: 200px;
+		height: 200px;
+		float: left;
+		background: @backgroundsquare;
+	}
+	.butttons{
+		width: 100%;
+		height: auto;
+		float: left;
+		.bt-pesquisar{
+			background: @backgroundbutton;
+			color: #fff;
+			border:none;
+			padding:10px 45px;
+		}
 	}
 }
